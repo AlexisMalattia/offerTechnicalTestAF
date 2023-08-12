@@ -1,16 +1,23 @@
 package com.example.offertechnicaltestaf.service;
 
 import com.example.offertechnicaltestaf.model.User;
+import com.example.offertechnicaltestaf.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.List;
 
 @Service
 public class UserService {
     @Autowired
-    private User user;
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
     public ValidateUserParams isUserValid(User user) {
         ValidateUserParams validateUserParams = new ValidateUserParams();
         if (user.getName() == null || user.getName().isEmpty()) {
@@ -38,5 +45,19 @@ public class UserService {
         if (validateUserParams.hasErrors()) {
             throw new InvalidInformationsFromUsersException(validateUserParams);
         }
+    }
+
+    public List<User> getAllUsers() {
+        return (List<User>) userRepository.findAll();
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
     }
 }

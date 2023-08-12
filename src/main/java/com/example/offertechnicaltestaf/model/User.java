@@ -1,19 +1,24 @@
 package com.example.offertechnicaltestaf.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
 
 
-@Component
+@Entity
 public class User {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private Date birthDate;
     private String countryOfResidence;
     private int phoneNumber;
     private String gender;
+
     public String getName() {
         return name;
     }
@@ -52,5 +57,13 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
