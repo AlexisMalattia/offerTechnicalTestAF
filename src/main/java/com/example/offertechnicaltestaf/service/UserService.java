@@ -48,7 +48,8 @@ public class UserService {
     }
 
     /**
-     *
+     * This function aims to create new User in the databse. It first validates the attributes of the user, then save it into the database if every
+     * non-optional attributes are filled properly. Otherwise, it throws an InvalidInformationsFromUsersException
      * @param user The user that we are trying to add to the database, it validates the attributes of the user thanks to
      *             isUserValid() and then save it in the database if no error has been thrown
      */
