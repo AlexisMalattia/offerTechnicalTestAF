@@ -4,31 +4,29 @@ import com.example.offertechnicaltestaf.model.User;
 import com.example.offertechnicaltestaf.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
 import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
+@ActiveProfiles("test")
 class UserServiceTest {
 
-    @Mock
+    @Autowired
     private UserRepository userRepository;
+    @Autowired
     private UserService userService;
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-        userService = new UserService(userRepository);
-    }
-
     @Test
     void isUserValid_true() {
         User user = new User();
@@ -36,30 +34,30 @@ class UserServiceTest {
         user.setBirthDate(Date.from(LocalDate.of(1990, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
         user.setCountryOfResidence("France");
         userService.createUser(user);
-        verify(userRepository, times(1)).save(user);
+        System.out.println(user);
+        User savedUser = userRepository.findById(user.getId()).orElse(null);
+        System.out.println(savedUser);
+        assertEquals(user.getName(), savedUser.getName());
+        assertEquals(user.getBirthDate(), savedUser.getBirthDate());
+        assertEquals(user.getCountryOfResidence(), savedUser.getCountryOfResidence());
+        //verify(userRepository, times(1)).save(user);
     }
 
     @Test
-    void createUser() {
-    }
+    void isUserValid_false() {
+        User user = new User();
+        user.setName("");
+        try {
+            userService.createUser(user);
+        } catch (InvalidInformationsFromUsersException e) {
+            ValidateUserParams validateUserParams = e.getValidateUserParams();
+            assertTrue(validateUserParams.hasErrors());
+            Map<String,String> expectedErrors = new HashMap<>();
+            expectedErrors.put("name", "A name is required");
+            expectedErrors.put("countryOfResidence", "A country of residence is required");
+            expectedErrors.put("birthDate", "A birth date is required");
+            assertEquals(expectedErrors, validateUserParams.getErrors());
+        }
 
-    @Test
-    void getAllUsers() {
-    }
-
-    @Test
-    void getUserById() {
-    }
-
-    @Test
-    void getUserByName() {
-    }
-
-    @Test
-    void saveUser() {
-    }
-
-    @Test
-    void deleteUser() {
     }
 }

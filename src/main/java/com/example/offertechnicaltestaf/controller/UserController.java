@@ -30,8 +30,9 @@ public class UserController {
     }
 
     @GetMapping("/displayUser")
-    public ResponseEntity<?> getUserById(@RequestParam String name) {
-        User user = userService.getUserByName(name);
+    public ResponseEntity<?> getUserById(@RequestParam Long id) {
+        // User user = userService.getUserByName(name);
+        User user = userService.getUserById(id);
         if (user == null) {
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         }
