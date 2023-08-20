@@ -41,8 +41,11 @@ public class UserService {
         }
         if (user.getCountryOfResidence() == null || user.getCountryOfResidence().isEmpty()) {
             validateUserParams.addError("countryOfResidence", "A country of residence is required");
-        } else if (!user.getCountryOfResidence().equals("France")) {
-            validateUserParams.addError("countryOfResidence", "The country of residence must be France to create an account");
+        } else {
+            user.setCountryOfResidence(user.getCountryOfResidence().toLowerCase()); // this is to avoid case sensitive errors
+            if (!user.getCountryOfResidence().equals("france")) {
+                validateUserParams.addError("countryOfResidence", "The country of residence must be France to create an account");
+            }
         }
         return validateUserParams;
     }
