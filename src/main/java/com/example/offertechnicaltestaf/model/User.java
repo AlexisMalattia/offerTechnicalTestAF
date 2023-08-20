@@ -14,7 +14,7 @@ public class User {
     private String name;
     private Date birthDate;
     private String countryOfResidence;
-    private int phoneNumber;
+    private String phoneNumber;
     private String gender;
 
     public String getName() {
@@ -41,11 +41,11 @@ public class User {
         this.countryOfResidence = countryOfResidence;
     }
     @Nullable
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     @Nullable
