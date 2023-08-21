@@ -2,17 +2,13 @@ package com.example.offertechnicaltestaf.controller;
 
 import com.example.offertechnicaltestaf.dto.UserDTO;
 import com.example.offertechnicaltestaf.exception.UserNotFoundException;
-import com.example.offertechnicaltestaf.model.User;
 import com.example.offertechnicaltestaf.service.UserService;
+import com.example.offertechnicaltestaf.utils.UserUtils;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -36,7 +32,7 @@ public class UserController {
 
     /**
      * This function aims to retrieve an existing user from the database thanks to its ID
-     * @param id the id of the user we are trying to retrieves from the database
+     * @param userId the id of the user we are trying to retrieves from the database
      * @return an HTTP status, 200 if the id matches one in the database, 404 otherwise.
      */
     @GetMapping("/user/{userId}")

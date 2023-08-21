@@ -19,11 +19,6 @@ public class UserService implements UserServiceInterface{
     private UserRepository userRepository;
     @Autowired
     private UserMapper userMapper;
-
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
-
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
         User userEntity = userMapper.toEntity(userDTO);
