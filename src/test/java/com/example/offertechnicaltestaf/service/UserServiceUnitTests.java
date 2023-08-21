@@ -5,17 +5,11 @@ import com.example.offertechnicaltestaf.exception.UserNotFoundException;
 import com.example.offertechnicaltestaf.mapper.UserMapper;
 import com.example.offertechnicaltestaf.model.User;
 import com.example.offertechnicaltestaf.repository.UserRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
