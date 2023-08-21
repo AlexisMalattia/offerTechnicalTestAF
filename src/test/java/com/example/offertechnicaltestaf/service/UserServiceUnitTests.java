@@ -10,6 +10,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.time.LocalDate;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,5 +45,31 @@ public class UserServiceUnitTests {
        Long userId = 1L;
        when(userRepository.findById(userId)).thenReturn(Optional.empty());
        assertThrows(UserNotFoundException.class, () -> userService.getUserDetails(userId));
+   }
+
+   @Test
+    public void testSaveUser(){
+       UserDTO userDTO = new UserDTO();
+       userDTO.setName("Alexis");
+       userDTO.setBirthDate(LocalDate.of(2001, 4, 22));
+       userDTO.setCountryOfResidence("France");
+
+       User userEntity = new User();
+       userEntity.setName("Alexis");
+       userEntity.setBirthDate(LocalDate.of(2001, 4, 22));
+       userEntity.setCountryOfResidence("France");
+
+       when(userMapper.toEntity(userDTO)).thenReturn(userEntity);
+       when(userRepository.save(userEntity)).thenReturn(userEntity);
+
+       UserDTO expectedUserDTO = new UserDTO();
+       expectedUserDTO.setName("Alexis");
+       expectedUserDTO.setBirthDate(LocalDate.of(2001, 4, 22));
+       expectedUserDTO.setCountryOfResidence("France");
+
+       when(userMapper.toDTO(userEntity)).thenReturn(expectedUserDTO);
+       UserDTO savedUserDTO = userService.saveUser(userDTO);
+
+       assertEquals(expectedUserDTO, savedUserDTO);
    }
 }
