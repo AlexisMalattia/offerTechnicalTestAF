@@ -8,8 +8,8 @@
 
 ## Usage
 You can use the following endpoints to interact with the application:
-- GET http://localhost:8080/user/{id} to get a user by its id
-- POST http://localhost:8080/user/create to create a new user
+- GET http://localhost:8080/api/user/{id} to get a user by its id
+- POST http://localhost:8080/api/user to create a new user
 
 The body of the POST request on Postman should be a JSON object with the following structure:
 ```
