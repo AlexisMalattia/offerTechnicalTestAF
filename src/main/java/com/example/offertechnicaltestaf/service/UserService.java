@@ -19,6 +19,12 @@ public class UserService implements UserServiceInterface{
     private UserRepository userRepository;
     @Autowired
     private UserMapper userMapper;
+
+    /**
+     * This function saves a user in the database
+     * @param userDTO : the user to save
+     * @return the saved user
+     */
     @Override
     public UserDTO saveUser(UserDTO userDTO) {
         User userEntity = userMapper.toEntity(userDTO);
@@ -26,6 +32,11 @@ public class UserService implements UserServiceInterface{
         return userMapper.toDTO(savedUser);
     }
 
+    /**
+     * This function returns all the information about a user from the database, throws an exception if the user is not found
+     * @param userId : the id of the user
+     * @return the user
+     */
     @Override
     public UserDTO getUserDetails(Long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);

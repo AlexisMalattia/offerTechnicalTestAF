@@ -11,6 +11,11 @@ import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    /**
+     * This is a global exception handler for MethodArgumentNotValidException, which is thrown when the @Valid fails in the controller.
+     * @param e MethodArgumentNotValidException
+     * @return ResponseEntity<String> with the error message and HTTP status code 400
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException e) {
         String errorMessage = e.getBindingResult()
