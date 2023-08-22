@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "e79f8b0b-dfdd-422f-a2cc-8527059c5b3e",
+		"name": "Requêtes test API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22804713",
+		"_collection_link": "https://crimson-star-929601.postman.co/workspace/offerTechnicalTestAF~daf7b495-f4cf-4448-b8f2-09e435c0e305/collection/22804713-e79f8b0b-dfdd-422f-a2cc-8527059c5b3e?action=share&source=collection_link&creator=22804713"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/api/user/1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"1"
+					]
+				},
+				"description": "requête get par nom"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/user/create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Alexis\",\r\n    \"countryOfResidence\": \"France\",\r\n    \"birthDate\": \"2001-04-22\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": "requête post"
+			},
+			"response": [
+				{
+					"name": "http://localhost:8080/user/create",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Anthony\",\r\n    \"birthDate\": \"2001-04-22\", \r\n    \"countryOfResidence\": \"France\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"create"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 20 Aug 2023 14:13:32 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "User created"
+				}
+			]
+		}
+	]
+}
